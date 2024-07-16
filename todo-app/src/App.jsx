@@ -1,9 +1,36 @@
-import React from 'react'
+import React, { useEffect, useState } from "react";
+import "./App.css";
+import Navbar from "./components/Navbar";
+import TodoForm from "./components/TodoForm";
 
 const App = () => {
-  return (
-    <div>App</div>
-  )
-}
+  const [todo, setTodo] = useState([]);
 
-export default App
+  useEffect(() => {
+    const storedTodos = JSON.parse(localStorage.getItem("todos")) || [];
+    setTodo(storedTodos);
+  }, []);
+
+  const addTask = (text) => {
+    // console.log("click add");
+    const newTask = {
+      id: Date.now(),
+      text,
+    };
+    setTodo(todo.unshift(newTask));
+    localStorage.setItem("todos", JSON.stringify(todo));
+    alert("New Task Added");
+    setTodo(JSON.parse(localStorage.getItem("todos")));
+  };
+
+  const deleteTask = () => {};
+
+  return (
+    <>
+      <Navbar />
+      <TodoForm addTask={addTask} />
+    </>
+  );
+};
+
+export default App;
