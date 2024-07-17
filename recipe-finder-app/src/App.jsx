@@ -7,12 +7,13 @@ import Recipes from "./components/subComponents/Recipes";
 import RecipeDetails from "./components/RecipeDetails";
 import data from "./recipes.json";
 import Navbar from "./components/Navbar";
+import Footer from "./components/Footer";
 
 const App = () => {
   const [recipes, setRecipes] = useState([]);
   useEffect(() => {
     setRecipes(data);
-    console.log(data);
+    // console.log(data);
   }, []);
   return (
     <BrowserRouter>
@@ -21,8 +22,9 @@ const App = () => {
         <Route path="/" element={<Home recipes={recipes} />} />
         <Route path="/about" element={<About />} />
         <Route path="/recipes" element={<Recipes />} />
-        <Route path="/recipe/:id" element={<RecipeDetails />} />
+        <Route path="/recipe/:id" element={<RecipeDetails recipes={recipes}/>} />
       </Routes>
+      <Footer />
     </BrowserRouter>
   );
 };
