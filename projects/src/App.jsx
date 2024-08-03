@@ -12,6 +12,7 @@ import Ten from "./components/Ten";
 import Eleven from "./components/Eleven";
 import Twelve from "./components/Twelve";
 import Thirteen from "./components/Thirteen";
+import Fourteen from "./components/Fourteen";
 
 const App = () => {
   return (
@@ -28,7 +29,8 @@ const App = () => {
       {/* <Ten /> */}
       {/* <Eleven /> */}
       {/* <Twelve /> */}
-      <Thirteen />
+      {/* <Thirteen /> */}
+      <Fourteen />
     </>
   );
 };
