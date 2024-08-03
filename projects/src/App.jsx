@@ -11,6 +11,7 @@ import Nine from "./components/Nine";
 import Ten from "./components/Ten";
 import Eleven from "./components/Eleven";
 import Twelve from "./components/Twelve";
+import Thirteen from "./components/Thirteen";
 
 const App = () => {
   return (
@@ -26,7 +27,8 @@ const App = () => {
       {/* <Nine /> */}
       {/* <Ten /> */}
       {/* <Eleven /> */}
-      <Twelve />
+      {/* <Twelve /> */}
+      <Thirteen />
     </>
   );
 };

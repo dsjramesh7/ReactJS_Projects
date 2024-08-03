@@ -1,36 +1,79 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from "react";
 
-export default function Thirteen() {
-    const [weather,setWeather] = useState(null);
+const Thirteen = () => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [isRegistered, setIsRegistered] = useState(true);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [users, setUsers] = useState([]);
 
-    useEffect(()=> {
-        if(navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition((position) => {
-                const latitude = position.coords.latitude;
-                const longitude = position.coords.longitude;
+  const handleLogin = () => {
+    setIsRegistered(!isRegistered);
+  };
 
-                fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=53cbf6b7bd02a2df9591c91dca9a2b85
-                `)
-                .then((response)=>response.json())
-                .then((data) => setWeather(data));
-            })
-        }
-    },[])
+  const handleAuthentication = () => {
+    if (isRegistered) {
+      //login
+      const user = users.find(
+        (u) => u.email === email && u.password === password
+      );
+      if (user) {
+        setIsLoggedIn(true);
+      } else {
+        alert("Login failed invalid credentials");
+      }
+    } else {
+      //register
+      const newUsers = { email, password };
+      setUsers([...users, newUsers]);
+      localStorage.setItem("users", JSON.stringify([...users, newUsers]));
+      setIsLoggedIn(true);
+    }
+  };
+
+  const handleLogout = () => {
+    setIsLoggedIn(false);
+    setEmail("");
+    setPassword("");
+  };
 
   return (
-    <div>
-      {weather ? (
+    <>
+      {isLoggedIn ? (
         <div>
-            <h2>Current weather</h2>
-            <p>Temperature:{weather.main.temp}</p>
-            <p>Conditions:{weather.weather[0].description}</p>
-            </div>
-      ):(
-                <p>
-                    Loading .....
-                </p>
-      )
-}
-    </div>
-  )
-}
+          <h1>Welcome, {email}</h1>
+          <button onClick={handleLogout}>Logout</button>
+        </div>
+      ) : (
+        <div>
+          <h2>{isRegistered ? "Login" : "Register"}</h2>
+          <form>
+            <input
+              type="email"
+              placeholder="Enter email.."
+              onChange={(e) => setEmail(e.target.value)}
+            />
+            <input
+              type="password"
+              placeholder="Enter password.."
+              onChange={(e) => setPassword(e.target.value)}
+            />
+            <button onClick={handleAuthentication}>
+              {isRegistered ? "Login" : "Register"}
+            </button>
+          </form>
+          <p>
+            {isRegistered
+              ? `Don't have an Account? Register Now`
+              : `Already Have an Account? Log In!`}
+          </p>
+          <button onClick={handleLogin}>
+            {isRegistered ? "Register" : "Login"}
+          </button>
+        </div>
+      )}
+    </>
+  );
+};
+
+export default Thirteen;
