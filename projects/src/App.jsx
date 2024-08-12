@@ -16,6 +16,7 @@ import Fourteen from "./components/Fourteen";
 import Fifteen from "./components/Fifteen";
 import Sixteen from "./components/Sixteen";
 import Eighteen from "./components/Eighteen";
+import NIneteen from "./components/NIneteen";
 
 const App = () => {
   const items = ["item1", "item2", "item3", "item4", "thing1", "thing2"];
@@ -69,7 +70,8 @@ const App = () => {
       {/* <Fourteen /> */}
       {/* <Fifteen itemOfthings={items}/> */}
       {/* <Sixteen topAnimeList={topAnime} itemPerPage={5} /> */}
-      <Eighteen />
+      {/* <Eighteen /> */}
+      <NIneteen />
     </>
   );
 };
