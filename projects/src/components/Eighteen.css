@@ -1,0 +1,38 @@
+.menu {
+  display: flex;
+  gap: 2rem;
+}
+.menu-icon{
+  display: none;
+}
+h1 {
+  font-size: 2rem !important;
+  text-align: bottom;
+  display: flex;
+  justify-content: center;
+  height: 90vh;
+  align-items: center;
+}
+
+@media (max-width: 768px) {
+  .menu-icon {
+    display: block;
+  }
+
+  .menu {
+    display: none;
+    background: rgb(84, 84, 84);
+    position: absolute;
+    top: 40px;
+    right: 0;
+    width: 100%;
+  }
+
+  .menu.open {
+    display: block;
+  }
+  .menu li {
+    padding: 10px;
+    color: white;
+  }
+}
